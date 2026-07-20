@@ -1,0 +1,23 @@
+{
+  "name": "kc_1",
+  "version": "1.0.0",
+  "main": "smoke.js",
+  "scripts": {
+    "test:ci": "npx playwright test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@playwright/test": "^1.61.1",
+    "chai": "^4.5.0",
+    "mocha": "^11.7.6",
+    "mochawesome": "^7.1.4"
+  },
+  "dependencies": {
+    "csv-parse": "^7.0.1",
+    "dotenv": "^17.4.2",
+    "xlsx": "^0.18.5"
+  }
+}

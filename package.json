@@ -4,7 +4,8 @@
   "main": "smoke.js",
   "scripts": {
     "test:ci": "npx playwright test",
-    "test:debug": "cross-env LOG_LEVEL=debug DEBUG=pw:* npx playwright test --timeout=0"
+    "test:smoke": "npx playwright test --grep @smoke",
+    "test:regression": "npx playwright test --grep @regression"
   },
   "keywords": [],
   "author": "",

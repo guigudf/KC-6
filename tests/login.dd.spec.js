@@ -3,7 +3,7 @@ const LoginPage = require("../pages/LoginPage");
 const { maskSecret } = require("../utils/logger");
 
 
-test("login with masked password", async ({ page }) => {
+test("@regression login with masked password", async ({ page }) => {
 
     const login = new LoginPage(page);
 

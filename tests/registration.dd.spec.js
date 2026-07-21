@@ -2,15 +2,14 @@ const { test, expect } = require("@playwright/test");
 
 test.describe("Registration page smoke tests", () => {
 
-    test("should open registration page", async ({ page }) => {
-
+test("@smoke should open registration page", async ({ page }) => {
         await page.goto("https://practice.expandtesting.com/register");
 
         await expect(page).toHaveTitle(/Register/i);
     });
 
 
-    test("should display registration fields", async ({ page }) => {
+    test("@smoke should display registration fields", async ({ page }) => {
 
         await page.goto("https://practice.expandtesting.com/register");
 
@@ -20,7 +19,7 @@ test.describe("Registration page smoke tests", () => {
     });
 
 
-    test("should show error with invalid registration", async ({ page }) => {
+    test("@smoke should show error with invalid registration", async ({ page }) => {
 
         await page.goto("https://practice.expandtesting.com/register");
 

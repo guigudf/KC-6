@@ -46,7 +46,6 @@ class RegistrationPage extends BasePage {
     }
 
     async register(user) {
-        logger.info(`Registering as "${username}"`);
         await this.enterUsername(user.username);
         await this.enterPassword(user.password);
         await this.enterConfirmPassword(user.confirmPassword);

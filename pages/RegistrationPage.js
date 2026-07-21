@@ -1,5 +1,4 @@
 const BasePage = require("./BasePage");
-const logger = require("../utils/logger");
 class RegistrationPage extends BasePage {
 
     static USERNAME = "#username";

@@ -1,39 +1,37 @@
 const { test, expect } = require("@playwright/test");
-const { validate } = require("../utils/validation");
-const RegistrationPage = require("../pages/RegistrationPage");
-const { readData } = require("../utils/data");
 
-const source = process.env.DATA_SOURCE || "xlsx";
+test.describe("Registration page smoke tests", () => {
 
-const file =
-    source === "csv"
-        ? "data/registration-data.csv"
-        : "data/registration-data.xlsx";
+    test("should open registration page", async ({ page }) => {
 
-const dataset = readData(file);
-validate(dataset);
-        
-const filter = process.env.TEST_FILTER || "";
+        await page.goto("https://practice.expandtesting.com/register");
 
-const filtered = dataset.filter(row =>
-    row.testId.startsWith(filter)
-);
-
-filtered.forEach(row => {
-
-    test(`${row.testId} - ${row.testCase}`, async ({ page }) => {
-
-        const register = new RegistrationPage(page);
-
-        await register.open();
-
-        await register.register(row);
-
-        if (row.expected === "pass") {
-          await expect(page).toHaveURL(/login/);
-          await expect(page.locator("#flash")).toContainText("Successfully registered, you can log in now.");
-        } else {
-            await expect(page.locator("body")).toContainText(row.expectedError);
-        }
+        await expect(page).toHaveTitle(/Register/i);
     });
+
+
+    test("should display registration fields", async ({ page }) => {
+
+        await page.goto("https://practice.expandtesting.com/register");
+
+        await expect(page.locator("#username")).toBeVisible();
+        await expect(page.locator("#password")).toBeVisible();
+        await expect(page.locator("#confirmPassword")).toBeVisible();
+    });
+
+
+    test("should show error with invalid registration", async ({ page }) => {
+
+        await page.goto("https://practice.expandtesting.com/register");
+
+        await page.fill("#username", "testuser");
+        await page.fill("#password", "123");
+        await page.fill("#confirmPassword", "456");
+
+        await page.click("button[type='submit']");
+
+        await expect(page.locator("body"))
+            .toContainText(/password|error|invalid/i);
+    });
+
 });

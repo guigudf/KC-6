@@ -1,5 +1,5 @@
 const BasePage = require("./BasePage");
-
+const logger = require("../utils/logger");
 class RegistrationPage extends BasePage {
 
     static USERNAME = "#username";
@@ -10,6 +10,7 @@ class RegistrationPage extends BasePage {
     constructor(page) {
         super(page);
     }
+    
 
     async open() {
         await this.navigate(
@@ -45,6 +46,7 @@ class RegistrationPage extends BasePage {
     }
 
     async register(user) {
+        logger.info(`Registering as "${username}"`);
         await this.enterUsername(user.username);
         await this.enterPassword(user.password);
         await this.enterConfirmPassword(user.confirmPassword);

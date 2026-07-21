@@ -1,4 +1,5 @@
-const { readData } = require("../utils/data");
+const { readExcel } = require("./excel");
+const { readCsv } = require("./csv");
 
 function readData(filePath) {
 
